@@ -11,20 +11,26 @@ interface ProductCardProps {
 
 function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [selectedWeight, setSelectedWeight] = useState(Object.keys(product.prices)[0]);
+  const [quantity, setQuantity] = useState(1);
 
   const currentPrice = product.prices[selectedWeight];
+  const totalPrice = currentPrice * quantity;
+
+  const handleQuantityChange = (delta: number) => {
+    setQuantity((prev) => Math.max(1, prev + delta));
+  };
 
   const handleAddToCart = () => {
     onAddToCart({
       ...product,
       selectedWeight,
       currentPrice,
-      quantity: 1,
+      quantity,
     });
   };
 
   const handleWhatsAppOrder = () => {
-    const message = `Hello, I want to order: ${product.name} - ${selectedWeight} - PKR ${currentPrice}`;
+    const message = `Hello, I want to order:\n\nProduct: ${product.name}\nQuantity: ${quantity}\nWeight: ${selectedWeight}\nTotal Price: PKR ${totalPrice}`;
     const whatsappUrl = `https://wa.me/923229214000?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -78,7 +84,29 @@ function ProductCard({ product, onAddToCart }: ProductCardProps) {
         {/* Price */}
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-3xl font-black text-gold">PKR {currentPrice}</span>
+            <span className="text-3xl font-black text-gold">PKR {totalPrice}</span>
+            <span className="text-xs text-text-main opacity-60 block mt-1">PKR {currentPrice} × {quantity}</span>
+          </div>
+        </div>
+
+        {/* Quantity Selector */}
+        <div className="flex items-center gap-4">
+          <span className="text-[10px] uppercase font-black text-gold tracking-[0.2em]">Quantity</span>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => handleQuantityChange(-1)}
+              disabled={quantity <= 1}
+              className="w-10 h-10 rounded-xl bg-white/5 border border-gold/30 text-gold font-black text-xl hover:bg-gold hover:text-black transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+            >
+              -
+            </button>
+            <span className="text-xl font-black text-heading min-w-[40px] text-center">{quantity}</span>
+            <button
+              onClick={() => handleQuantityChange(1)}
+              className="w-10 h-10 rounded-xl bg-white/5 border border-gold/30 text-gold font-black text-xl hover:bg-gold hover:text-black transition-all duration-300 flex items-center justify-center"
+            >
+              +
+            </button>
           </div>
         </div>
 

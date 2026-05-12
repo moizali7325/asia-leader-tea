@@ -62,23 +62,14 @@ export default function Cart({
       toast.error('Please wait 5 seconds before ordering again');
       return;
     }
-    
-    if (!validateForm()) {
-      setShowCustomerForm(true);
-      return;
-    }
-    
+
     setLastOrderTime(now);
     setIsProcessingOrder(true);
 
     const orderId = `ALT-${Date.now().toString(36).toUpperCase()}`;
-    const itemList = items.map(item => `- ${DOMPurify.sanitize(item.name)} (${DOMPurify.sanitize(item.selectedWeight)}) x${item.quantity}`).join('\n');
-    const message = `📦 *NEW ORDER - ${orderId}*
-
-👤 *Customer Details:*
-Name: ${DOMPurify.sanitize(customerDetails.name)}
-Phone: ${DOMPurify.sanitize(customerDetails.phone)}
-Address: ${DOMPurify.sanitize(customerDetails.address)}
+    const itemList = items.map(item => `- ${DOMPurify.sanitize(item.name)} (${DOMPurify.sanitize(item.selectedWeight)}) x${item.quantity} = PKR ${item.currentPrice * item.quantity}`).join('\n');
+    
+    let message = `📦 *NEW ORDER - ${orderId}*
 
 🛍️ *Order Items:*
 ${itemList}
@@ -87,14 +78,72 @@ ${itemList}
 
 📅 *Order Date:* ${new Date().toLocaleDateString()}
 *Asia Leader Tea*`;
-    
+
+    if (customerDetails.name || customerDetails.phone || customerDetails.address) {
+      message = `📦 *NEW ORDER - ${orderId}*
+
+👤 *Customer Details:*
+${customerDetails.name ? `Name: ${DOMPurify.sanitize(customerDetails.name)}\n` : ''}
+${customerDetails.phone ? `Phone: ${DOMPurify.sanitize(customerDetails.phone)}\n` : ''}
+${customerDetails.address ? `Address: ${DOMPurify.sanitize(customerDetails.address)}\n` : ''}
+
+🛍️ *Order Items:*
+${itemList}
+
+💰 *Total: ${CURRENCY} ${subtotal}*
+
+📅 *Order Date:* ${new Date().toLocaleDateString()}
+*Asia Leader Tea*`;
+    }
+
     const encodedMessage = encodeURIComponent(message);
-    
+
     setTimeout(() => {
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
       toast.success('Opening WhatsApp for your order');
       setIsProcessingOrder(false);
     }, 1000);
+  };
+
+  const handleDirectCheckout = () => {
+    if (items.length === 0) {
+      toast.error('Your cart is empty');
+      return;
+    }
+
+    const orderId = `ALT-${Date.now().toString(36).toUpperCase()}`;
+    const itemList = items.map(item => `- ${DOMPurify.sanitize(item.name)} (${DOMPurify.sanitize(item.selectedWeight)}) x${item.quantity} = PKR ${item.currentPrice * item.quantity}`).join('\n');
+    
+    let message = `📦 *NEW ORDER - ${orderId}*
+
+🛍️ *Order Items:*
+${itemList}
+
+💰 *Total: ${CURRENCY} ${subtotal}*
+
+📅 *Order Date:* ${new Date().toLocaleDateString()}
+*Asia Leader Tea*`;
+
+    if (customerDetails.name || customerDetails.phone || customerDetails.address) {
+      message = `📦 *NEW ORDER - ${orderId}*
+
+👤 *Customer Details:*
+${customerDetails.name ? `Name: ${DOMPurify.sanitize(customerDetails.name)}\n` : ''}
+${customerDetails.phone ? `Phone: ${DOMPurify.sanitize(customerDetails.phone)}\n` : ''}
+${customerDetails.address ? `Address: ${DOMPurify.sanitize(customerDetails.address)}\n` : ''}
+
+🛍️ *Order Items:*
+${itemList}
+
+💰 *Total: ${CURRENCY} ${subtotal}*
+
+📅 *Order Date:* ${new Date().toLocaleDateString()}
+*Asia Leader Tea*`;
+    }
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+    toast.success('Opening WhatsApp for direct checkout');
   };
 
   return (
@@ -282,7 +331,7 @@ ${itemList}
                   </button>
                   
                   <button 
-                    onClick={() => toast('Direct checkout coming soon! Please use WhatsApp order for now.')}
+                    onClick={handleDirectCheckout}
                     className="w-full py-5 border border-white/20 text-white font-black uppercase tracking-[0.3em] rounded-[24px] flex items-center justify-center gap-4 hover:bg-primary hover:border-primary transition-all shadow-[0_0_15px_rgba(0,0,0,0.3)] hover:shadow-[0_0_25px_rgba(31,122,90,0.5)] text-sm group"
                   >
                     Direct Checkout <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
