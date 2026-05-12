@@ -138,7 +138,7 @@ export const PRODUCTS = [
     categoryId: 'danedar',
     name: 'Asia Hotel Blend',
     description: 'Premium hotel quality tea blend for exceptional taste.',
-    image: IMAGES.ASIA_HOTEL_BLEND,
+    image: IMAGES.IMAGE_88,
     prices: { '1kg': 1500 },
     color: '#1f7a5a'
   },
