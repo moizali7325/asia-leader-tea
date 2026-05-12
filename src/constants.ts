@@ -19,6 +19,7 @@ export const IMAGES = {
   IMAGE_16: '/images/16.jfif',
   IMAGE_17: '/images/17.jfif',
   IMAGE_88: '/images/88.jpeg',
+  ASIA_HOTEL_BLEND: '/images/asia-hotel-blend.jpeg',
   STRONG_DANEDAR: '/images/WhatsApp Image 2026-04-17 at 9.59.38 PM.jpeg',
   STRONG_TASTE_DUST: '/images/WhatsApp Image 2026-04-17 at 10.01.21 PM.jpeg',
   MILKOL: '/images/WhatsApp Image 2026-04-17 at 10.07.17 PM.jpeg',
@@ -137,7 +138,7 @@ export const PRODUCTS = [
     categoryId: 'danedar',
     name: 'Asia Hotel Blend',
     description: 'Premium hotel quality tea blend for exceptional taste.',
-    image: IMAGES.IMAGE_88,
+    image: IMAGES.ASIA_HOTEL_BLEND,
     prices: { '1kg': 1500 },
     color: '#1f7a5a'
   },
