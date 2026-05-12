@@ -18,8 +18,8 @@ export default function Navbar({ cartCount, onOpenCart }: { cartCount: number; o
 
   const navLinks = [
     { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
     { name: 'Products', href: '#products' },
+    { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
   ];
 

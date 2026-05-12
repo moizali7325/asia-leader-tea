@@ -139,6 +139,17 @@ export default function App() {
             
             <main id="main-content">
               <Hero />
+              <Suspense fallback={
+                <div className="px-6 md:px-16 py-20">
+                  <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                  </div>
+                </div>
+              }>
+                <Products onAddToCart={handleAddToCart} />
+              </Suspense>
               <About />
               <Suspense fallback={
                 <div className="px-6 md:px-16 py-20">
@@ -150,17 +161,6 @@ export default function App() {
                 </div>
               }>
                 <Features />
-              </Suspense>
-              <Suspense fallback={
-                <div className="px-6 md:px-16 py-20">
-                  <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                  </div>
-                </div>
-              }>
-                <Products onAddToCart={handleAddToCart} />
               </Suspense>
               <Suspense fallback={<LoadingScreen />}>
                 <Experience />
