@@ -220,7 +220,7 @@ export const PRODUCTS = [
     name: 'Premium Coffee Blend',
     description: 'Rich and aromatic premium coffee for the perfect brew.',
     image: IMAGES.IMAGE_17,
-    prices: { '25g': 380, '50g': 750, '1kg': 1500 },
+    prices: { '25g': 380, '50g': 750 },
     color: '#6F4E37'
   }
 ];
