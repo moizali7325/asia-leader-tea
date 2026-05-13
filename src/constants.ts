@@ -19,6 +19,7 @@ export const IMAGES = {
   IMAGE_16: '/images/16.jfif',
   IMAGE_17: '/images/17.jfif',
   IMAGE_88: '/images/88.jpeg',
+  IMAGE_99: '/images/99.jpeg',
   ASIA_HOTEL_BLEND: '/images/asia-hotel-blend.jpeg',
   STRONG_DANEDAR: '/images/WhatsApp Image 2026-04-17 at 9.59.38 PM.jpeg',
   STRONG_TASTE_DUST: '/images/WhatsApp Image 2026-04-17 at 10.01.21 PM.jpeg',
@@ -156,7 +157,7 @@ export const PRODUCTS = [
     categoryId: 'dust',
     name: 'Kashmiri Chai Special',
     description: 'Premium herbal tea blend for health and wellness.',
-    image: IMAGES.IMAGE_13,
+    image: IMAGES.IMAGE_99,
     prices: { '35g': 160, '70g': 300 },
     color: '#d4af37'
   },
