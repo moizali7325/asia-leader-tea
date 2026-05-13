@@ -1,4 +1,4 @@
-import { Leaf, Instagram, Twitter, Facebook, ArrowUp } from 'lucide-react';
+import { Leaf, Instagram, Twitter, ArrowUp } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function Footer() {
@@ -30,8 +30,18 @@ export default function Footer() {
                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-white hover:bg-primary hover:text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.4)] hover:shadow-[0_0_20px_rgba(31,122,90,0.5)] border border-white/10 hover:border-primary hover:-translate-y-1" aria-label="Follow us on Twitter">
                     <Twitter className="w-6 h-6" />
                </a>
-               <a href="https://www.facebook.com/Asialeadera?rdid=REs9d3xEyXJ9aDbA&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1PRP473tZ5%2F#" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-white hover:bg-primary hover:text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.4)] hover:shadow-[0_0_20px_rgba(31,122,90,0.5)] border border-white/10 hover:border-primary hover:-translate-y-1" aria-label="Follow us on Facebook">
-                    <Facebook className="w-6 h-6" />
+               <a href="https://www.tiktok.com/@talhamarkatiya17" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-white hover:bg-primary hover:text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.4)] hover:shadow-[0_0_20px_rgba(31,122,90,0.5)] border border-white/10 hover:border-primary hover:-translate-y-1" aria-label="Follow us on TikTok">
+                    <svg 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      className="w-6 h-6"
+                    >
+                      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                    </svg>
                </a>
             </div>
           </div>
